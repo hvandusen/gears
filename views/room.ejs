@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<script src="jquery-2.0.0.min.js"></script>
+<script type="text/javascript" src="paper.js"></script>
+<script type="text/javascript" src="secondary.js"></script>
+
+
+</head>
+  <body>
+    <div id='roomname' class=' <%= room %>'</div>
+    <div id='message' style='left:-100; color:white;'><a> drag for fun!!</a></div>
+        <canvas style='width: 100%' id="myCanvas" resize></canvas>
+    <br>
+    <button style='width: 100%; background-size:50px 70px; color:green; border:5px solid blue;font-size: 1.5em; background-image: url("eraser.png");' id='giveup'>erase this garbage!</button><br>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+$('body').mousemove(function(event){
+  $('button').css('color',prettyRaCo())
+});
+
+</script>
+<script type="text/paperscript" src='script.js' canvas="myCanvas"></script>
+</body>
+</html>

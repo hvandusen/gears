@@ -1,0 +1,24 @@
+{
+  "name": "candusenhub",
+  "version": "0.0.0-24",
+  "private": true,
+  "dependencies": {
+    "ejs": "^2.2.4",
+    "express": "^4.11.2",
+    "morgan": "^1.5.1",
+    "socket.io": "^1.3.4",
+    "underscore": "^1.7.0"
+  },
+  "domains": [
+    "cheeseburgerbuns.com"
+  ],
+  "engines": {
+    "node": ">=0.10.22",
+    "npm": ">=1.3.14"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "main": "app.js",
+  "subdomain": "can"
+}
