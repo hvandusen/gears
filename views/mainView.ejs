@@ -10,15 +10,17 @@
 
 </head>
   <body>
-    <a><%= room %></a>
-    <div id='message' style='left:-100; color:white;'><a> drag for fun!!</a></div>
-        <canvas style='width: 100%' id="myCanvas" resize></canvas>
+    <ul>
+<% for(var i=0; i<rooms.length; i++) {%>
+   <li><a href='./<%= rooms[i] %>'><%= rooms[i] %></a></li>
+   <li><img style='width:500px;' src='<%= imgs[rooms[i]] %>'></img></li>
+<% } %>
+</ul>
     <br>
-    <button style='width: 100%; background-size:50px 70px; color:green; border:5px solid blue;font-size: 1.5em; background-image: url("eraser.png");' id='giveup'>erase this garbage!</button><br>
 <script src="/socket.io/socket.io.js"></script>
 <script>
 $('body').mousemove(function(event){
-  $('button').css('color',prettyRaCo())
+
 });
   // load the socket.io library above, the connect to the server
   // because the socket.io server is being run on the same server as your
@@ -29,6 +31,5 @@ $('body').mousemove(function(event){
   // when 'filechanged' events fire, take our fileobj object and do something with it
 
 </script>
-<script type="text/paperscript" src='script.js' canvas="myCanvas"></script>
 </body>
 </html>

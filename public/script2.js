@@ -13,11 +13,9 @@ $(document).bind('mousemove', function(e){
 });
 
 
-	room = $('#roomname')[0].classList[0]
+var room = $('#roomname')[0].classList[0]
 $('#giveup').click(function(){
-
 	socket.emit('giveup')
-
 });
 
 function onMouseDown(event){
@@ -25,7 +23,7 @@ function onMouseDown(event){
 	path = new Path();
 	path.strokeColor = prettyRaCo();
 	path.strokeWidth = 6;
-	//socket.emit('mousedown',[event.point.x,event.point.y])
+	//socket.emit('mousedown',[event.point.x,event.point.y]);
 }
 
 function onMouseDrag(event){
@@ -41,13 +39,14 @@ function onMouseUp(event){
 		pathPoints = [];
 		$.each(path.segments,function(i,j){
 			pathPoints[i] = [j.point.x,j.point.y]
-		})
-		//console.dir(pathPoints)
+		});
 	//	socket.emit('mouseup')
 		path.smooth();
 		c = document.getElementById("myCanvas");
-		console.dir(c.toDataUrl())
-		socket.emit('newPath',{newPath: pathPoints,img:c.toDataUrl()})
+		socket.emit('newPath',{
+			newPath: pathPoints,
+			room:room,
+			img:c.toDataURL()})
 	}
 }
 
@@ -59,9 +58,8 @@ function gear(gearPath){
 		points: gearPath,
 		len: gearPath.length
 	});
-	socket.emit('newgear',{points:gearPath});
+//	socket.emit('newgear',{points:gearPath});
 	//console.dir(gears.);
-
 }
 
 function onFrame(event){
@@ -77,10 +75,14 @@ if(event.count<15000)
 
 
 socket.emit('roomname',$('#roomname')[0].classList[0])
+
+
+
 socket.on('update', function (data) {
 	console.log('update!!')
 	paths = data.paths
 	project.clear();
+	console.dir(data)
 	$.each(paths,function(i,j){
 		p = new Path()
 		$.each(j,function(m,n){
