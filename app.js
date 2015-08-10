@@ -48,11 +48,23 @@ io.sockets.on('connection', function (socket) {
   });
 });
 
-app.get('/', function (request, response) {
+app.get('/cheeseburgerbuns', function (request, response) {
     response.render('mainView', {rooms: Object.keys(pathList),imgs:imgList});
 });
 
-app.get('/:room', function (request, response) {
+app.get('/cheeseburgerbuns/:room/delete', function (request, response) {
+  if(pathList[request.params.room])
+  {
+    delete pathList[request.params.room]
+    delete gearCount[request.params.room]
+    delete imgList[request.params.room]
+  }
+  response.redirect('/cheeseburgerbuns');
+
+});
+
+
+app.get('/cheeseburgerbuns/:room', function (request, response) {
     //io.to('/'+request.params.room).emit('some event');
     //response.locals.room = request.params
 

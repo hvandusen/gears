@@ -6,20 +6,47 @@
 <script src="jquery-2.0.0.min.js"></script>
 <script type="text/javascript" src="paper.js"></script>
 <script type="text/javascript" src="secondary.js"></script>
-
+<script type="text/paperscript" src='gearsHen.js' canvas="chillCanv"></script>
+<style>
+.room {
+  display:inline-block;
+  background-color:white;
+  width:28%;
+  height: 28%;
+  border: 3px solid black;
+  z-index:1;
+}
+#container {
+  right : 0;
+  text-align:right;
+}
+#chillCanv {
+   z-index:-1;
+   width:3000px;
+   height:2000px;
+   position:fixed;
+}
+</style>
 
 </head>
   <body>
-    <ul>
+    <canvas id='chillCanv' ></canvas>
+   <a style='background-color:white'> to make a new room, add "/your_room_name" to the url and press enter!!! </a>
+<div id='container'>
 <% for(var i=0; i<rooms.length; i++) {%>
-   <li><a href='./<%= rooms[i] %>'><%= rooms[i] %></a></li>
-   <li><img style='width:500px;' src='<%= imgs[rooms[i]] %>'></img></li>
+  <div href='/<%=rooms[i]%>' class='room'>
+  <a><%= rooms[i] %></a>
+   <img style='width:100%' src='<%= imgs[rooms[i]] %>'></img>
+ </div>
 <% } %>
-</ul>
+</div>
+
     <br>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-$('body').mousemove(function(event){
+$('.room').click(function(){
+  console.dir(this)
+  window.open('/'+this.innerText, '_blank')
 
 });
   // load the socket.io library above, the connect to the server
