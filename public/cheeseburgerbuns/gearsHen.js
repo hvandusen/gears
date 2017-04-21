@@ -1,5 +1,5 @@
 var rowSize = 150;
-var columnSize = 150; 
+var columnSize = 150;
 var spacing = 20;
 var circleSize = 7;
 var gradientRatio=.23;
@@ -10,7 +10,7 @@ var point = new Object({
 	x: 0,
 	y:0,
 	on: false
-	
+
 });
 
 var colors = [];
@@ -28,7 +28,7 @@ var rows = new Array(rowSize);
 
 //init 2d array
 for(var i = 0;i<rows.length;i++){
-	rows[i] = new Array(columnSize);	
+	rows[i] = new Array(columnSize);
 }
 console.dir(rows[4]);
 //rows[4][8].on = true;
@@ -45,7 +45,7 @@ var left = function lef(pt){
 function onFrame(){
 	draw(left);
 	draw(init);
-	
+
 }
 
 
@@ -65,16 +65,16 @@ var init = function initPt(pt){
 	return {
 		x: num(1000),
 		y:num(1000),
-		on: false		
-	
-		
+		on: false
+
+
 	};
 }
 var bloip = function initPt(pt){
 	return {
 		x: num(range)*num(range*gradientRatio),
 		y:num(70)*num(23),
-		on: false		
+		on: false
 	};
 }
 
@@ -84,7 +84,7 @@ rows[4][8].on = true;
 var circle = function circ(pt){
 	var circ = new Path.Circle(new Point(pt.x,pt.y),[circleSize,circleSize]);
 	circ.fillColor = colors[num(10)];//prettyRaCo();
-	
+
 }
 
 draw(bloip);
@@ -94,7 +94,7 @@ draw(circle);
 $('body').click(function(){
 
 project.activeLayer.removeChildren();
-setColors();
-draw(bloip);
-draw(circle);
+	setColors();
+	draw(bloip);
+	draw(circle);
 });

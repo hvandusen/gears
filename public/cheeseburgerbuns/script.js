@@ -46,8 +46,7 @@ function onMouseUp(event){
 	//	socket.emit('mouseup')
 		path.smooth();
 		c = document.getElementById("myCanvas");
-		console.dir(c.toDataUrl())
-		socket.emit('newPath',{newPath: pathPoints,img:c.toDataUrl()})
+		socket.emit('newPath',{newPath: pathPoints,img:c.toDataUrl(0.5)})
 	}
 }
 

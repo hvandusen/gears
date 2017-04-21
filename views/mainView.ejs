@@ -14,7 +14,7 @@
    <a style='background-color:white'> to make a new room, add "/your_room_name" to the url and press enter!!! </a>
 <div id='container'>
 <% for(var i=0; i<rooms.length; i++) {%>
-  <div href='/<%=rooms[i]%>' class='room'>
+  <div href='<%=rooms[i]%>' class='room'>
   <a><%= rooms[i] %></a>
    <img style='width:100%' src='<%= imgs[rooms[i]] %>'></img>
  </div>

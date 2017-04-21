@@ -7,8 +7,19 @@
   border: 3px solid black;
   z-index:1;
   margin: 10px;
+  position: relative;
+}
+
+.room a {
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
 #container {
+}
+body {
+  margin: 0;
+  padding: 0;
 }
 #chillCanv {
    z-index:-1;
