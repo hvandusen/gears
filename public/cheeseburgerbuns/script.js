@@ -46,7 +46,7 @@ function onMouseUp(event){
 	//	socket.emit('mouseup')
 		path.smooth();
 		c = document.getElementById("myCanvas");
-		socket.emit('newPath',{newPath: pathPoints,img:c.toDataUrl(0.5)})
+		socket.emit('newPath',{newPath: pathPoints,img:c.toDataUrl(0.3)})
 	}
 }
 
@@ -104,8 +104,6 @@ socket.on('project', function (data) {
 		paths = data.paths//.importJSON(data.project);
 		console.log('incoming gears list')
 		console.dir(paths)
-		//project.clear();
-
 		$.each(paths,function(i,j){
 			p = new Path()
 			$.each(j,function(m,n){
@@ -118,9 +116,7 @@ socket.on('project', function (data) {
 			gear(p.segments)
 		});
 	}
-
-
-	});
+});
 
 	socket.on('newPath', function (data) {
 		livepath = new Path();

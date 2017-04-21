@@ -15,7 +15,7 @@
 <div id='container'>
 <% for(var i=0; i<rooms.length; i++) {%>
   <a href='/cheeseburgerbuns/<%=rooms[i]%>' class='room'>
-  <p><%= rooms[i] %></p>
+  <h3><%= rooms[i] %></h3>
    <img style='width:100%' src='<%= imgs[rooms[i]] %>'></img>
  </a>
 <% } %>
@@ -31,13 +31,6 @@
 // });
 list = $('#container')
 list.children().each(function(i,li){list.prepend(li)})
-  // load the socket.io library above, the connect to the server
-  // because the socket.io server is being run on the same server as your
-  // express instance, you can connect() without any additional information
-  //var socket = io.connect(); // TIP: .connect with no args does auto-discovery
-//console.dir(socket)
-
-  // when 'filechanged' events fire, take our fileobj object and do something with it
 
 </script>
 </body>
