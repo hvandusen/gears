@@ -1,0 +1,18 @@
+canvas {
+width: 100%;
+background-color: white;
+
+}
+
+img {
+visibility:hidden;
+position:fixed;
+top:15px;
+left:12px;
+
+}
+
+#message {
+	position:absolute;
+	
+}

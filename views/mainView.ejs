@@ -49,6 +49,8 @@ $('.room').click(function(){
   window.open('/'+this.innerText, '_blank')
 
 });
+list = $('#container')
+list.children().each(function(i,li){list.prepend(li)})
   // load the socket.io library above, the connect to the server
   // because the socket.io server is being run on the same server as your
   // express instance, you can connect() without any additional information
