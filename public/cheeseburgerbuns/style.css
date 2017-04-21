@@ -1,0 +1,18 @@
+.room {
+  display:inline-block;
+  background-color:white;
+  width:28%;
+  height: 28%;
+  min-width: 200px;
+  border: 3px solid black;
+  z-index:1;
+  margin: 10px;
+}
+#container {
+}
+#chillCanv {
+   z-index:-1;
+   width:3000px;
+   height:2000px;
+   position:fixed;
+}
