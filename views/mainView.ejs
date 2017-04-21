@@ -14,21 +14,21 @@
    <a style='background-color:white'> to make a new room, add "/your_room_name" to the url and press enter!!! </a>
 <div id='container'>
 <% for(var i=0; i<rooms.length; i++) {%>
-  <div href='/cheeseburgerbuns/<%=rooms[i]%>' class='room'>
-  <a><%= rooms[i] %></a>
+  <a href='/cheeseburgerbuns/<%=rooms[i]%>' class='room'>
+  <p><%= rooms[i] %></p>
    <img style='width:100%' src='<%= imgs[rooms[i]] %>'></img>
- </div>
+ </a>
 <% } %>
 </div>
 
     <br>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-$('.room').click(function(){
-  console.dir(this)
-  window.open('/'+this.innerText, '_blank')
-
-});
+// $('.room').click(function(){
+//   console.dir(this)
+//   window.open('/'+this.innerText, '_blank')
+//
+// });
 list = $('#container')
 list.children().each(function(i,li){list.prepend(li)})
   // load the socket.io library above, the connect to the server
