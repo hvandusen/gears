@@ -13,7 +13,7 @@ $(document).bind('mousemove', function(e){
 });
 
 
-var room = $('#roomname')[0].classList[0]
+var room = $('#roomname').attr('data-room')
 $('#giveup').click(function(){
 	socket.emit('giveup')
 });
@@ -63,7 +63,6 @@ function gear(gearPath){
 }
 
 function onFrame(event){
-if(event.count<15000)
 	for(var i = 0;i<gears.length;i++){
 		gears[i].loc.position = gears[i].points[ event.count%gears[i].len].point;
 	}
@@ -74,7 +73,8 @@ if(event.count<15000)
 	//var circle = new Path.Circle(point,new Size(60,60));
 
 
-socket.emit('roomname',$('#roomname')[0].classList[0])
+// (re)join the room every time the socket connects, including reconnects
+socket.on('connect', function(){ socket.emit('roomname',room) });
 
 
 
@@ -82,7 +82,7 @@ socket.on('update', function (data) {
 	console.log('update!!')
 	paths = data.paths
 	project.clear();
-	console.dir(data)
+	gears = [];
 	$.each(paths,function(i,j){
 		p = new Path()
 		$.each(j,function(m,n){
@@ -107,7 +107,8 @@ socket.on('project', function (data) {
 		paths = data.paths//.importJSON(data.project);
 		console.log('incoming gears list')
 		console.dir(paths)
-		//project.clear();
+		project.clear();
+		gears = [];
 
 		$.each(paths,function(i,j){
 			p = new Path()
@@ -143,6 +144,6 @@ socket.on('project', function (data) {
 
 
 	socket.on('erase', function (data) {
-		//pathList = []
 		project.clear();
+		gears = [];
 	});

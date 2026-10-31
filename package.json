@@ -1,26 +1,19 @@
 {
-  "name": "candusenhub",
-  "version": "0.0.0-25",
+  "name": "gears",
+  "version": "2.0.0",
   "private": true,
-  "dependencies": {
-    "ejs": "^2.2.4",
-    "express": "^4.11.2",
-    "express-favicon": "^1.0.1",
-    "morgan": "^1.5.1",
-    "serve-favicon": "^2.2.0",
-    "socket.io": "^1.3.4",
-    "underscore": "^1.7.0"
-  },
-  "domains": [
-    "cheeseburgerbuns.com"
-  ],
-  "engines": {
-    "node": ">=0.10.22",
-    "npm": ">=1.3.14"
-  },
+  "description": "Collaborative drawing rooms: drag to draw a line and a ball rides along it.",
+  "main": "server.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node --env-file-if-exists=.env server.js",
+    "dev": "node --watch --env-file-if-exists=.env server.js"
   },
-  "main": "app.js",
-  "subdomain": "can"
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1"
+  }
 }
