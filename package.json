@@ -5,8 +5,8 @@
   "description": "Collaborative drawing rooms: drag to draw a line and a ball rides along it.",
   "main": "server.js",
   "scripts": {
-    "start": "node --env-file-if-exists=.env server.js",
-    "dev": "node --watch --env-file-if-exists=.env server.js"
+    "start": "node server.js",
+    "dev": "node --watch server.js"
   },
   "engines": {
     "node": ">=22"

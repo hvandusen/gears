@@ -1,5 +1,10 @@
 const fs = require('fs');
 const path = require('path');
+
+// Load .env from this folder, however the app is started (npm start, pm2, node).
+try {
+  process.loadEnvFile(path.join(__dirname, '.env'));
+} catch {}
 const http = require('http');
 const express = require('express');
 const { Server } = require('socket.io');
@@ -39,6 +44,7 @@ const server = http.createServer(app);
 // Canvas snapshots can be a few MB on big screens.
 const io = new Server(server, { maxHttpBufferSize: 10e6 });
 
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
