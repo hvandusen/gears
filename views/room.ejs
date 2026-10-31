@@ -11,6 +11,35 @@
   /* Touches on the canvas draw instead of scrolling or zooming the page. */
   #myCanvas { touch-action: none; display: block; }
   body { overscroll-behavior: none; }
+
+  #giveup {
+    width: 100%;
+    background-image: url("/eraser.png");
+    background-size: 50px 70px;
+    color: green;
+    border: 5px solid blue;
+    font-size: 1.5em;
+  }
+
+  /* Phones: a small eraser pinned to the top right corner. */
+  @media (max-width: 700px), (pointer: coarse) {
+    #giveup {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      border-width: 3px;
+      font-size: 0; /* just the eraser picture */
+      background-color: white;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    #giveup + br { display: none; }
+  }
 </style>
 </head>
   <body>
@@ -18,7 +47,7 @@
     <div id='message' style='left:-100; color:white;'><a> drag for fun!!</a></div>
         <canvas style='width: 100%' id="myCanvas" resize></canvas>
     <br>
-    <button style='width: 100%; background-size:50px 70px; color:green; border:5px solid blue;font-size: 1.5em; background-image: url("/eraser.png");' id='giveup'>erase this garbage!</button><br>
+    <button id='giveup' aria-label='erase this garbage!'>erase this garbage!</button><br>
 <script src="/socket.io/socket.io.js"></script>
 <script>
 // Older iOS Safari ignores touch-action, so also stop the scroll directly.

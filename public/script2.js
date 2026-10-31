@@ -35,7 +35,7 @@ function onMouseDrag(event){
 function onMouseUp(event){
 	if(path.segments.length>0)
 		{
-		gear(path.segments);
+		gear(path);
 		pathPoints = [];
 		$.each(path.segments,function(i,j){
 			pathPoints[i] = [j.point.x,j.point.y]
@@ -50,21 +50,29 @@ function onMouseUp(event){
 	}
 }
 
+// Every dot moves at the same steady speed along its line, then jumps back
+// to the start. Time-based, so it doesn't depend on how fast the line was
+// drawn or on the screen's refresh rate.
+var DOT_SPEED = 250; // pixels per second
+
 function gear(gearPath){
 	var circle = new Path.Circle(new Point(-100,-100), new Size(20,20));
 	circle.fillColor = prettyRaCo();
 	gears.push({
 		loc: circle,
-		points: gearPath,
-		len: gearPath.length
+		path: gearPath
 	});
-//	socket.emit('newgear',{points:gearPath});
-	//console.dir(gears.);
 }
 
 function onFrame(event){
 	for(var i = 0;i<gears.length;i++){
-		gears[i].loc.position = gears[i].points[ event.count%gears[i].len].point;
+		var g = gears[i];
+		var len = g.path.length;
+		if (!len) {
+			if (g.path.firstSegment) g.loc.position = g.path.firstSegment.point;
+			continue;
+		}
+		g.loc.position = g.path.getPointAt((event.time * DOT_SPEED) % len);
 	}
 }
 
@@ -91,7 +99,7 @@ socket.on('update', function (data) {
 		p.strokeColor = prettyRaCo();
 		p.strokeWidth = 6;
 		p.smooth()
-		gear(p.segments)
+		gear(p)
 	});
 
 });
@@ -119,7 +127,7 @@ socket.on('project', function (data) {
 			p.strokeColor = prettyRaCo();
 			p.strokeWidth = 6;
 			p.smooth()
-			gear(p.segments)
+			gear(p)
 		});
 	}
 
@@ -138,7 +146,7 @@ socket.on('project', function (data) {
 	});
 
 	socket.on('endPath', function (data) {
-		gear(livepath.segments)
+		gear(livepath)
 		livepath.smooth()
 	});
 
