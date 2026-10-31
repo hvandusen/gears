@@ -7,6 +7,11 @@
 <script src="/jquery-2.0.0.min.js"></script>
 <script type="text/javascript" src="/paper.js"></script>
 <script type="text/javascript" src="/secondary.js"></script>
+<style>
+  /* Touches on the canvas draw instead of scrolling or zooming the page. */
+  #myCanvas { touch-action: none; display: block; }
+  body { overscroll-behavior: none; }
+</style>
 </head>
   <body>
     <div id='roomname' data-room='<%= room %>'></div>
@@ -16,6 +21,11 @@
     <button style='width: 100%; background-size:50px 70px; color:green; border:5px solid blue;font-size: 1.5em; background-image: url("/eraser.png");' id='giveup'>erase this garbage!</button><br>
 <script src="/socket.io/socket.io.js"></script>
 <script>
+// Older iOS Safari ignores touch-action, so also stop the scroll directly.
+document.getElementById('myCanvas').addEventListener('touchmove', function (e) {
+  e.preventDefault();
+}, { passive: false });
+
 $('body').mousemove(function(event){
   $('button').css('color',prettyRaCo())
 });
